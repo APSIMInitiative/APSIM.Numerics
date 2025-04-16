@@ -13,4 +13,8 @@
     <Description>This package contains simple numerical functions that are used by APSIM.</Description>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Include="..\README.md" Pack="true" PackagePath="\"/>
+  </ItemGroup>
+
 </Project>
