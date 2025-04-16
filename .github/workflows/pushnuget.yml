@@ -4,7 +4,8 @@ env:
   NUGET_API_KEY:  ${{ NUGET_API_KEY }}
 on:
   pull_request_target:
-    branches: [ master ]
+    types:
+      - closed
 
 jobs:
   build:
