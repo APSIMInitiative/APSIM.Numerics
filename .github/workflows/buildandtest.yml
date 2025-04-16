@@ -4,7 +4,7 @@ env:
   SSH_KEY:  ${{ github.actor }}_SSH_KEY
 on:
   pull_request_target:
-    branches: [ master ]
+    branches: [ main ]
 
 jobs:
   build:
