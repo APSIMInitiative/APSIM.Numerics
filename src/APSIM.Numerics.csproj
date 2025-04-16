@@ -4,6 +4,13 @@
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>disable</Nullable>
+
+    <PackageId>APSIM.Numerics</PackageId>
+    <Version>8.0.0</Version>
+    <Authors>APSIM Initiative</Authors>
+    <Company>APSIM Initiative</Company>
+    <PackageTags>Numerics,Math</PackageTags>
+    <Description>This package contains simple numerical functions that are used by APSIM.</Description>
   </PropertyGroup>
 
 </Project>
