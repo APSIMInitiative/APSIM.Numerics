@@ -1,0 +1,33 @@
+name: APSIM.Numerics build and test
+
+env:
+  SSH_KEY:  ${{ github.actor }}_SSH_KEY
+on:
+  pull_request_target:
+    branches: [ master ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        dotnet-version: [ '8.0.x' ]
+
+    steps:
+      - name: Checkout Pull request branch
+        uses: actions/checkout@v4
+        with:
+          repository: ${{github.event.pull_request.head.repo.full_name}}
+          ref: ${{github.event.pull_request.head.ref}}
+          ssh-key: ${{secrets[env.SSH_KEY]}}
+      - name: Setup .NET Core SDK ${{ matrix.dotnet-version }}
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: ${{ matrix.dotnet-version }}
+      - name: Install dependencies
+        run: dotnet restore APSIM.Numerics.sln
+      - name: Build
+        run: dotnet build APSIM.Numerics.sln --configuration Debug --no-restore --verbosity minimal
+      - name: Test
+        run: dotnet test APSIM.Numerics.sln --no-restore --verbosity minimal
