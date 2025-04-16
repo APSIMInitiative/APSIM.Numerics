@@ -26,4 +26,4 @@ jobs:
       - name: Build and pack
         run: dotnet pack
       - name: Push to NuGet
-        run: dotnet nuget push "*.nupkg" --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json
+        run: cd src\bin\Release && dotnet nuget push "*.nupkg" --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json
