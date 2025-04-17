@@ -6,15 +6,24 @@
     <Nullable>disable</Nullable>
 
     <PackageId>APSIM.Numerics</PackageId>
-    <Version>8.0.0</Version>
+    <Version>8.1.0</Version>
     <Authors>APSIM Initiative</Authors>
     <Company>APSIM Initiative</Company>
     <PackageTags>Numerics,Math</PackageTags>
     <Description>This package contains simple numerical functions that are used by APSIM.</Description>
   </PropertyGroup>
 
+  <PropertyGroup>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
+  </PropertyGroup>
+
   <ItemGroup>
     <None Include="..\README.md" Pack="true" PackagePath="\"/>
+    <None Include="..\LICENSE.md" Pack="true" PackagePath=""/>
   </ItemGroup>
 
 </Project>
