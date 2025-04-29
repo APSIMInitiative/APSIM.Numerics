@@ -39,33 +39,33 @@ public class MathUtilities
     /// <summary>
     /// Return true if the true if value 1 is greater than value 2
     /// </summary>
-    public static bool IsGreaterThan(double value1, double value2)
+    public static bool IsGreaterThan(double value1, double value2, double tol = tolerance)
     {
-        return (value1 - value2) > tolerance;
+        return (value1 - value2) > tol;
     }
 
     /// <summary>
     /// Return true if the true if value 1 is greater than or equal to value 2
     /// </summary>
-    public static bool IsGreaterThanOrEqual(double value1, double value2)
+    public static bool IsGreaterThanOrEqual(double value1, double value2, double tol = tolerance)
     {
-        return (value1 - value2) >= tolerance || FloatsAreEqual(value1, value2);
+        return (value1 - value2) >= tol || FloatsAreEqual(value1, value2);
     }
 
     /// <summary>
     /// Return true if the true if value 1 is less than value 2
     /// </summary>
-    public static bool IsLessThan(double value1, double value2)
+    public static bool IsLessThan(double value1, double value2, double tol = tolerance)
         {
-        return (value2 - value1) > tolerance;
+        return (value2 - value1) > tol;
         }
 
     /// <summary>
     /// Return true if the true if value 1 is less than or equal to value 2
     /// </summary>
-    public static bool IsLessThanOrEqual(double value1, double value2)
+    public static bool IsLessThanOrEqual(double value1, double value2, double tol = tolerance)
     {
-        return (value2 - value1) >= tolerance || FloatsAreEqual(value1, value2);
+        return (value2 - value1) >= tol || FloatsAreEqual(value1, value2);
     }
 
     /// <summary>
