@@ -1959,4 +1959,30 @@ public class MathUtilities
     {
         return rad / Math.PI * 180.0;
     }
+
+    /// <summary>
+    /// This function checks if a number stored as a string has the correct notation for the culture settings on the system
+    /// </summary>
+    /// <param name="rad">The string value to check</param>
+    /// <returns>True if value has valid decimal notation</returns>
+    public bool CheckDecimalNotation(string value)
+    {
+        CultureInfo currentCulture = CultureInfo.CurrentCulture;
+        char[] potentialSeperators = ['.', ','];
+        char cultureSeperator = currentCulture.NumberFormat.NumberDecimalSeparator[0];
+
+        int index = value.LastIndexOfAny(potentialSeperators);
+        if (index > -1)
+            if (value[index] != cultureSeperator)
+                throw new Exception($"\"{value}\" is using a seperator ({value[index]}) different from language setting ({cultureSeperator})");
+
+        int count = 0;
+        foreach (char character in value)
+            if (character == cultureSeperator)
+                count += 1;
+        if (count > 1)
+            throw new Exception($"\"{value}\" has to many decimal seperators ({cultureSeperator})");
+
+        return true;
+    }
 }
