@@ -6,7 +6,7 @@
     <Nullable>disable</Nullable>
 
     <PackageId>APSIM.Numerics</PackageId>
-    <Version>8.2.0</Version>
+    <Version>8.3.0</Version>
     <Authors>APSIM Initiative</Authors>
     <Company>APSIM Initiative</Company>
     <PackageTags>Numerics,Math</PackageTags>
