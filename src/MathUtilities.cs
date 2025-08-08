@@ -56,9 +56,9 @@ public class MathUtilities
     /// Return true if the true if value 1 is less than value 2
     /// </summary>
     public static bool IsLessThan(double value1, double value2, double tol = tolerance)
-        {
+    {
         return (value2 - value1) > tol;
-        }
+    }
 
     /// <summary>
     /// Return true if the true if value 1 is less than or equal to value 2
@@ -90,9 +90,9 @@ public class MathUtilities
     /// Round the specified value to zero if within the given tolerance
     /// </summary>
     public static double RoundToZero(double value, double tolerance)
-        {
-            return (System.Math.Abs(value) <= tolerance) ? 0.0 : value;
-        }
+    {
+        return (System.Math.Abs(value) <= tolerance) ? 0.0 : value;
+    }
 
     /// <summary>
     ///Round the specified value to zero if within 1x10e-15 of zero
@@ -145,7 +145,7 @@ public class MathUtilities
     /// Perform a stepwise divide of the values in value 1 with the values in value2.
     /// Returns an array of the same size as value 1 and value 2
     /// </summary>
-    public static double[] Divide(double[] value1, double[] value2, double errVal=0.0)
+    public static double[] Divide(double[] value1, double[] value2, double errVal = 0.0)
     {
         double[] results = null;
         if (value1.Length == value2.Length)
@@ -490,10 +490,10 @@ public class MathUtilities
     /// <param name="NumDecPlaces"></param>
     /// <returns></returns>
     static public double Round(double Value, int NumDecPlaces)
-     {
-         // rounds properly rather than the System.Math.round function.
-         // e.g. 3.4 becomes 3.0
-         //      3.5 becomes 4.0
+    {
+        // rounds properly rather than the System.Math.round function.
+        // e.g. 3.4 becomes 3.0
+        //      3.5 becomes 4.0
         double Multiplier = System.Math.Pow(10.0, NumDecPlaces);  // gives 1 or 10 or 100 for decplaces=0, 1, or 2 etc
         Value = System.Math.Truncate(Value * Multiplier + 0.5);
         return Value / Multiplier;
@@ -521,7 +521,7 @@ public class MathUtilities
         }
 
         int count = 0;
-        while(v < 1)
+        while (v < 1)
         {
             v = v * 10;
             count += 1;
@@ -615,7 +615,7 @@ public class MathUtilities
     /// Zero the specified 4-D array.
     /// </summary>
     /// <param name="arr">The array to be zeroed</param>
-    static public void Zero(double[, , ,] arr)
+    static public void Zero(double[,,,] arr)
     {
         if (arr != null)
         {
@@ -639,7 +639,7 @@ public class MathUtilities
     /// Zero the specified 5-D array.
     /// </summary>
     /// <param name="arr">The array to be zeroed</param>
-    static public void Zero(double[, , , ,] arr)
+    static public void Zero(double[,,,,] arr)
     {
         if (arr != null)
         {
@@ -820,7 +820,7 @@ public class MathUtilities
         }
         else
         {
-            double[] sortedSequence = (double[]) sequence.Clone();
+            double[] sortedSequence = (double[])sequence.Clone();
             Array.Sort(sortedSequence);
             int i = Convert.ToInt32(Math.Truncate(pctile * (n - 1)), CultureInfo.InvariantCulture);       //Otherwise interpolate between the
             double z = pctile * (n - 1) - i;                                //appropriate array elements
@@ -1019,7 +1019,7 @@ public class MathUtilities
         stats.SEintercept = System.Math.Sqrt(S2) * System.Math.Sqrt(SumX2 / (Num_points * CSSX));
 
         stats.NSE = 1.0 - SumOfSquaredResiduals / SumOfSquaredSD;     // Nash-Sutcliff efficiency
-        stats.ME =  1.0 / (double)stats.n * SumOfResiduals;           // Mean error
+        stats.ME = 1.0 / (double)stats.n * SumOfResiduals;           // Mean error
         stats.MAE = 1.0 / (double)stats.n * SumOfAbsResiduals;        // Mean Absolute Error
         stats.RSR = stats.RMSE / Math.Sqrt((1.0 / (stats.n - 1)) * SumOfSquaredSD);         // Root mean square error to Standard deviation Ratio
         stats.RMR = stats.RMSE / Xbar;         // Root mean square error to Mean Ratio
@@ -1664,7 +1664,7 @@ public class MathUtilities
         public double RMSD { get { return System.Math.Sqrt(MSD); } }
         /// <summary>Gets the percent.</summary>
         /// <value>The percent.</value>
-        public double Percent { get { return (RMSD / ObservedMean)*100; } }
+        public double Percent { get { return (RMSD / ObservedMean) * 100; } }
 
 
         // Low level pre calculations.
@@ -1788,8 +1788,8 @@ public class MathUtilities
     {
         if (reverse)
             return (from combination in combinations
-                   from value in set
-                   select new List<T>(combination) { value }).ToList();
+                    from value in set
+                    select new List<T>(combination) { value }).ToList();
         else
             return (from value in set
                     from combination in combinations
@@ -1958,5 +1958,44 @@ public class MathUtilities
     public static double Rad2Deg(double rad)
     {
         return rad / Math.PI * 180.0;
+    }
+
+    /// <summary>
+    /// Get a collection of grid points within a radius of a given latitude and longitude.
+    /// </summary>
+    /// <param name="latitude">The latitude</param>
+    /// <param name="longitude">The longitude</param>
+    /// <param name="radius">The radius (km)</param>
+    /// <param name="resolution">The grid resolution (°) e.g. 0.25°</param>
+    /// <param name="offset">The grid offset (°) e.g. 0.125°</param>
+    /// <returns>A collection of latitude/longitude pairs</returns>
+    public static IEnumerable<(double lat, double lon)> GetGridPointsWithinRadius(double latitude, double longitude, double radius,
+                                                                                  double resolution,  double offset)
+    {
+        double numGridPointsPerDegree = 1 / 0.25;
+
+        // Calculate the nearest grid point to our latitude and longitude.
+        double gridPointLong = Math.Round((longitude + offset) * numGridPointsPerDegree, 0) / numGridPointsPerDegree - offset;
+        double gridPointLat = Math.Round((latitude + offset) * numGridPointsPerDegree, 0) / numGridPointsPerDegree - offset;
+
+        // Determine the bounding box around the radius.
+        double left = gridPointLong;
+        while (MathUtilities.Distance(gridPointLat, left, gridPointLat, gridPointLong) < radius)
+            left -= resolution;
+        double right = gridPointLong;
+        while (MathUtilities.Distance(gridPointLat, right, gridPointLat, gridPointLong) < radius)
+            right += resolution;
+        double top = gridPointLat;
+        while (MathUtilities.Distance(top, gridPointLong, gridPointLat, gridPointLong) < radius)
+            top += resolution;
+        double bottom = gridPointLat;
+        while (MathUtilities.Distance(bottom, gridPointLong, gridPointLat, gridPointLong) < radius)
+            bottom -= resolution;
+
+        // Loop through all grid points and return the ones that are with the required radius.
+        for (double lat = top; lat >= bottom; lat -= resolution)
+            for (double lon = left; lon <= right; lon += resolution)
+                if (MathUtilities.Distance(lat, lon, gridPointLat, gridPointLong) < radius)
+                    yield return (lat, lon);
     }
 }
