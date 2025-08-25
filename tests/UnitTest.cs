@@ -64,4 +64,20 @@ public class Tests
             (-27.625, 151.625) };
         Assert.That(points, Is.EqualTo(expectedPoints));
     }
+
+    /// <summary>
+    /// Ensure the constaint methods.
+    /// </summary>
+    [Test]
+    public void TestConstraintMethods()
+    {
+        double[] values = [5, 25, 45, 60];
+        double[] lowerConstraints = [10, 20, 30, 40];
+        double[] upperConstraints = [20, 30, 40, 50];
+
+        Assert.That(values.LowerConstraint(lowerConstraints)
+                          .UpperConstraint(upperConstraints),
+                    Is.EqualTo(new double[] { 10, 25, 40, 50 }));
+    }
+    
 }
