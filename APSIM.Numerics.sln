@@ -2,9 +2,9 @@
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.2.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Numerics", "src\APSIM.Numerics.csproj", "{115F5582-7835-F1D3-3274-CC711E0838C5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "APSIM.Numerics", "src\APSIM.Numerics.csproj", "{115F5582-7835-F1D3-3274-CC711E0838C5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "tests\APSIM.Numerics.Tests.csproj", "{EF637ACA-EC73-403C-AD64-999A9BA00E52}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "APSIM.Numerics.Tests", "tests\APSIM.Numerics.Tests.csproj", "{EF637ACA-EC73-403C-AD64-999A9BA00E52}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
